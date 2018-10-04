@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Device} from './NativeModulesWrapper';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,6 +19,19 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor(props) {
+    super(props);
+
+    Device.getDeviceName(
+      (model, error) => {
+        console.log("model: " + model);
+        console.log("error: " + error);
+      }
+    );
+  }
+
+
+
   render() {
     return (
       <View style={styles.container}>
